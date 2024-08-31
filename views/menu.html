@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú del Restaurante</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .menu-item {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 300px;
+        }
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .menu-item-info {
+            padding: 15px;
+        }
+        .menu-item h3 {
+            margin: 0 0 10px 0;
+        }
+        .menu-item p {
+            margin: 0 0 10px 0;
+            color: #666;
+        }
+        .menu-item .price {
+            font-weight: bold;
+            color: #e44d26;
+        }
+        .add-to-cart {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .quantity-control {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .quantity-control button {
+            background-color: #008CBA;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .quantity-control span {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container" id="menu-container">
+        <!-- Los elementos del menú se agregarán aquí dinámicamente -->
+    </div>
+
+    <script>
+        const menuItems = [
+            { name: "Plato 1", description: "Descripción del plato 1", price: 10.99, image: "https://via.placeholder.com/300x200.png?text=Plato+1" },
+            { name: "Plato 2", description: "Descripción del plato 2", price: 12.99, image: "https://via.placeholder.com/300x200.png?text=Plato+2" },
+            { name: "Plato 3", description: "Descripción del plato 3", price: 9.99, image: "https://via.placeholder.com/300x200.png?text=Plato+3" },
+            { name: "Plato 4", description: "Descripción del plato 4", price: 11.99, image: "https://via.placeholder.com/300x200.png?text=Plato+4" },
+            { name: "Plato 5", description: "Descripción del plato 5", price: 13.99, image: "https://via.placeholder.com/300x200.png?text=Plato+5" },
+            { name: "Plato 6", description: "Descripción del plato 6", price: 14.99, image: "https://via.placeholder.com/300x200.png?text=Plato+6" },
+            { name: "Plato 7", description: "Descripción del plato 7", price: 15.99, image: "https://via.placeholder.com/300x200.png?text=Plato+7" },
+            { name: "Plato 8", description: "Descripción del plato 8", price: 16.99, image: "https://via.placeholder.com/300x200.png?text=Plato+8" },
+            { name: "Postre 1", description: "Descripción del postre 1", price: 5.99, image: "https://via.placeholder.com/300x200.png?text=Postre+1" },
+            { name: "Postre 2", description: "Descripción del postre 2", price: 6.99, image: "https://via.placeholder.com/300x200.png?text=Postre+2" },
+            { name: "Postre 3", description: "Descripción del postre 3", price: 7.99, image: "https://via.placeholder.com/300x200.png?text=Postre+3" },
+        ];
+
+        const menuContainer = document.getElementById('menu-container');
+
+        menuItems.forEach((item, index) => {
+            const menuItem = document.createElement('div');
+            menuItem.className = 'menu-item';
+            menuItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="menu-item-info">
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                    <p class="price">$${item.price.toFixed(2)}</p>
+                    <button class="add-to-cart" onclick="toggleQuantityControl(${index})">Añadir</button>
+                    <div class="quantity-control" id="quantity-control-${index}">
+                        <button onclick="decreaseQuantity(${index})">-</button>
+                        <span id="quantity-${index}">1</span>
+                        <button onclick="increaseQuantity(${index})">+</button>
+                    </div>
+                </div>
+            `;
+            menuContainer.appendChild(menuItem);
+        });
+
+        function toggleQuantityControl(index) {
+            const quantityControl = document.getElementById(`quantity-control-${index}`);
+            const addToCartButton = quantityControl.previousElementSibling;
+            
+            if (quantityControl.style.display === 'none' || quantityControl.style.display === '') {
+                quantityControl.style.display = 'flex';
+                addToCartButton.style.display = 'none';
+            } else {
+                quantityControl.style.display = 'none';
+                addToCartButton.style.display = 'inline-block';
+            }
+        }
+
+        function increaseQuantity(index) {
+            const quantityElement = document.getElementById(`quantity-${index}`);
+            let quantity = parseInt(quantityElement.textContent);
+            quantityElement.textContent = quantity + 1;
+        }
+
+        function decreaseQuantity(index) {
+            const quantityElement = document.getElementById(`quantity-${index}`);
+            let quantity = parseInt(quantityElement.textContent);
+            if (quantity > 1) {
+                quantityElement.textContent = quantity - 1;
+            } else {
+                toggleQuantityControl(index);
+            }
+        }
+    </script>
+</body>
+</html>
