@@ -1,0 +1,33 @@
+<%- include('partials/head') %>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="hero">
+      <img src="/images/hero-banner.jpg" alt="Delicious food spread">
+      <div class="hero-content">
+        <h1>Bienvenido a Delichoice!</h1>
+        <p>Descubre nuestro menú semanal y disfruta de deliciosas comidas.</p>
+      </div>
+    </section>
+
+    <section id="menu" class="products">
+      <h2>Menú de la Semana</h2>
+      <div class="product-grid">
+        <% products.slice(0, 6).forEach(product => { %>
+          <div class="product-card">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+            <h3><%= product.name %></h3>
+            <p class="price">$<%= product.price.toFixed(2) %></p>
+            <a href="/products/<%= product.id %>" class="btn">Ver detalle</a>
+          </div>
+        <% }); %>
+      </div>
+      <div class="center-button">
+        <a href="/products" class="btn btn-primary">Ver todos los productos</a>
+      </div>
+    </section>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

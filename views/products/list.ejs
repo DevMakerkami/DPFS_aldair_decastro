@@ -1,0 +1,21 @@
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+  <main>
+    <h1>Nuestros Productos</h1>
+    <div class="product-grid">
+      <% products.forEach(product => { %>
+        <div class="product-card">
+          <img src="<%= product.image %>" alt="<%= product.name %>">
+          <h3><%= product.name %></h3>
+          <p class="price">$<%= product.price.toFixed(2) %></p>
+          <a href="/products/<%= product.id %>" class="btn btn-secondary">Ver detalle</a>
+          <button class="btn btn-primary add-to-cart" data-id="<%= product.id %>">Agregar al carrito</button>
+        </div>
+      <% }); %>
+    </div>
+  </main>
+  <%- include('../partials/footer') %>
+  <script src="/js/cart.js"></script>
+</body>
+</html>

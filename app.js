@@ -1,33 +1,35 @@
 const express = require('express');
 const path = require('path');
-
+const methodOverride = require('method-override');
+const session = require('express-session');
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Configuración
-app.use(express.static('public'));
+// Set up EJS as the view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-// Rutas
-app.get('/', (req, res) => {
-    res.sendFile(path.join(dirname, 'views', 'index.html'));
-});
+// Middleware
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // set to true if using https
+  }));
+// Routes
+const homeRoutes = require('./routes/homeRoutes');
+const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/cartRoutes');
+const userRoutes = require('./routes/userRoutes');
 
-app.get('/product/:id', (req, res) => {
-    res.sendFile(path.join(dirname, 'views', 'productDetail.html'));
-});
+app.use('/', homeRoutes);
+app.use('/products', productRoutes);
+app.use('/cart', cartRoutes);
+app.use('/user', userRoutes);
 
-app.get('/cart', (req, res) => {
-    res.sendFile(path.join(dirname, 'views', 'productCart.html'));
-});
 
-app.get('/register', (req, res) => {
-    res.sendFile(path.join(dirname, 'views', 'register.html'));
-});
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'login.html'));
-});
-
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+module.exports = app;
