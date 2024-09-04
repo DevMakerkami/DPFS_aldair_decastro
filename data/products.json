@@ -23,7 +23,7 @@
       "description": "Tortilla de trigo rellena de pollo a la parrilla, lechuga, tomate y aderezo especial",
       "price": 7.99,
       "image": "/images/chicken-wrap.jpg",
-      "category": "Sándwiches",
+      "category": "Platos principales",
       "colors": ["Beige", "Verde"]
     },
     {
@@ -32,7 +32,7 @@
       "description": "Nutritivo bowl con quinoa, vegetales asados, aguacate y aderezo de limón",
       "price": 10.99,
       "image": "/images/quinoa.jpg",
-      "category": "Bowls",
+      "category": "Platos principales",
       "colors": ["Marrón", "Verde", "Naranja"]
     },
     {
@@ -41,7 +41,7 @@
       "description": "Auténticos tacos mexicanos con carne de cerdo marinada, piña, cebolla y cilantro",
       "price": 13.99,
       "image": "/images/tacos-pastor.jpg",
-      "category": "Comida mexicana",
+      "category": "Platos principales",
       "colors": ["Rojo", "Amarillo", "Verde"]
     },
     {
@@ -59,7 +59,7 @@
       "description": "Capas de pasta, carne molida, salsa de tomate y queso gratinado",
       "price": 12.99,
       "image": "/images/lasaña.jpg",
-      "category": "Pasta",
+      "category": "Platos principales",
       "colors": ["Rojo", "Blanco", "Amarillo"]
     },
     {
@@ -68,7 +68,7 @@
       "description": "Fideos de arroz salteados con tofu, camarones, cacahuetes y brotes de soja",
       "price": 11.99,
       "image": "/images/pad-thai.jpg",
-      "category": "Comida asiática",
+      "category": "Platos principales",
       "colors": ["Marrón", "Verde", "Blanco"]
     },
     {

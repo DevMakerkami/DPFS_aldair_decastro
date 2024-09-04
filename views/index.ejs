@@ -7,11 +7,12 @@
       <div class="hero-content">
         <h1>Bienvenido a Delichoice!</h1>
         <p>Descubre nuestro menú semanal y disfruta de deliciosas comidas.</p>
+        <a href="/products" class="btn btn-primary">Haz tu pedido</a>
       </div>
     </section>
 
     <section id="menu" class="products">
-      <h2>Menú de la Semana</h2>
+      <h2>Platos destacados</h2>
       <div class="product-grid">
         <% products.slice(0, 6).forEach(product => { %>
           <div class="product-card">
@@ -21,9 +22,6 @@
             <a href="/products/<%= product.id %>" class="btn">Ver detalle</a>
           </div>
         <% }); %>
-      </div>
-      <div class="center-button">
-        <a href="/products" class="btn btn-primary">Ver todos los productos</a>
       </div>
     </section>
   </main>

@@ -31,12 +31,15 @@ header {
 }
 
 nav {
+  
   display: flex;
+  position: sticky;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  z-index: 1000
 }
 
 .logo a {
@@ -480,6 +483,7 @@ footer {
 }
 
 .btn-primary {
+  margin-top: 30px;
   background-color: #4CAF50;
   color: white;
 }

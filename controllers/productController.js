@@ -15,9 +15,7 @@ exports.getProductDetail = (req, res) => {
 };
 
 exports.getAdminProductList = (req, res) => {
-  console.log('Accessing admin product list');
   const products = Product.getAll();
-  console.log('Products:', products);
   res.render('products/admin/list', { products });
 };
 

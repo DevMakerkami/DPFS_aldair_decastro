@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
   
           if (data.success) {
             cartCount.textContent = data.cartSize;
-            alert('Product added to cart!');
+            alert('Producto agregado Exitosamente!');
           } else {
-            alert('Failed to add product to cart.');
+            alert('Fallo al agregar al carrito.');
           }
         } catch (error) {
           console.error('Error:', error);
-          alert('An error occurred while adding the product to cart.');
+          alert('A ocurrido un error al agregar al carro.');
         }
       });
     });

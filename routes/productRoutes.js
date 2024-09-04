@@ -7,7 +7,7 @@ router.get('/', productController.getAllProducts);
 router.get('/:id', productController.getProductDetail);
 
 // Rutas de administración
-router.get('/admin', productController.getAdminProductList);
+router.get('/admin/list', productController.getAdminProductList);
 router.get('/admin/create', productController.getCreateProductForm);
 router.post('/admin', productController.createProduct);
 router.get('/admin/:id/edit', productController.getEditProductForm);
