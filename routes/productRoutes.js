@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
-const { isAdmin } = require('../middlewares/authMiddleware');
 
+// Rutas para clientes
 router.get('/', productController.getAllProducts);
 router.get('/:id', productController.getProductDetail);
-router.get('/create', productController.getCreateProductForm); 
-router.get('/:id/edit', productController.getEditProductForm); 
-router.delete('/:id', productController.deleteProduct);
 
-module.exports = router;  
+// Rutas de administración
+router.get('/admin', productController.getAdminProductList);
+router.get('/admin/create', productController.getCreateProductForm);
+router.post('/admin', productController.createProduct);
+router.get('/admin/:id/edit', productController.getEditProductForm);
+router.put('/admin/:id', productController.updateProduct);
+router.delete('/admin/:id', productController.deleteProduct);
+
+module.exports = router;

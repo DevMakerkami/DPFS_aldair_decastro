@@ -1,0 +1,49 @@
+<%- include('../../partials/head') %>
+<body>
+  <%- include('../../partials/header') %>
+  <main>
+    <h1>ADMIN / LISTAR</h1>
+    <div class="admin-actions">
+      <a href="/products/admin" class="btn btn-primary">Listar</a>
+      <a href="/products/admin/create" class="btn btn-secondary">+ Crear</a>
+    </div>
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>IMAGEN</th>
+          <th>MARCA</th>
+          <th>NOMBRE</th>
+          <th>PRECIO</th>
+          <th>STOCK</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(product => { %>
+          <tr>
+            <td>
+              <a href="/products/admin/<%= product.id %>/edit" class="btn btn-edit">
+                <i class="fas fa-edit"></i>
+              </a>
+            </td>
+            <td><img src="<%= product.image %>" alt="<%= product.name %>" class="product-image"></td>
+            <td><%= product.brand %></td>
+            <td><%= product.name %></td>
+            <td>$<%= product.price.toFixed(2) %></td>
+            <td><%= product.stock %></td>
+            <td>
+              <form action="/products/admin/<%= product.id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </main>
+  <%- include('../../partials/footer') %>
+</body>
+</html>

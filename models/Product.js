@@ -1,24 +1,59 @@
-const products = [
-    { id: '1', name: 'Ensalada César', price: 9.99, image: '/images/ensalada-cesar.jpg' },
-    { id: '2', name: 'Salmón al horno', price: 14.99, image: '/images/grilled-salmon.jpg' },
-    { id: '3', name: 'Wrap de pollo', price: 7.99, image: '/images/chicken-wrap.jpg' },
-    { id: '4', name: 'Bowl de quinoa', price: 10.99, image: '/images/quinoa.jpg' },
-    { id: '5', name: 'Tacos al pastor', price: 13.99, image: '/images/tacos-pastor.jpg' },
-    { id: '6', name: 'Paella', price: 13.99, image: '/images/paella.jpg' },
-    { id: '7', name: 'Lasaña', price: 12.99, image: '/images/lasaña.jpg' },
-    { id: '8', name: 'Pad Thai', price: 11.99, image: '/images/pad-thai.jpg' },
-    { id: '9', name: 'Flan de la casa', price: 4.99, image: '/images/flan.jpg' },
-    { id: '10', name: 'Cheesecake tradicional', price: 4.99, image: '/images/cheesecake.jpg' },
-  ];
-  
-  class Product {
-    static getAll() {
-      return products;
-    }
-  
-    static getById(id) {
-      return products.find(product => product.id === id);
+const fs = require('fs');
+const path = require('path');
+
+const productsFilePath = path.join(__dirname, '../data/products.json');
+
+class Product {
+  static getAll() {
+    try {
+      const productsData = fs.readFileSync(productsFilePath, 'utf-8');
+      return JSON.parse(productsData);
+    } catch (error) {
+      console.error('Error reading products file:', error);
+      return [];
     }
   }
-  
-  module.exports = Product;
+
+  static getById(id) {
+    const products = this.getAll();
+    return products.find(product => product.id === id);
+  }
+
+  static create(productData) {
+    const products = this.getAll();
+    const newProduct = {
+      id: Date.now().toString(),
+      ...productData
+    };
+    products.push(newProduct);
+    this.saveAll(products);
+    return newProduct;
+  }
+
+  static update(id, productData) {
+    const products = this.getAll();
+    const index = products.findIndex(product => product.id === id);
+    if (index !== -1) {
+      products[index] = { ...products[index], ...productData };
+      this.saveAll(products);
+      return products[index];
+    }
+    return null;
+  }
+
+  static delete(id) {
+    const products = this.getAll();
+    const filteredProducts = products.filter(product => product.id !== id);
+    if (filteredProducts.length < products.length) {
+      this.saveAll(filteredProducts);
+      return true;
+    }
+    return false;
+  }
+
+  static saveAll(products) {
+    fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+  }
+}
+
+module.exports = Product;

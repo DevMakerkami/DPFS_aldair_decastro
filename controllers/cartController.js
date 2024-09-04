@@ -7,8 +7,10 @@ exports.getCart = (req, res) => {
 };
 
 exports.addToCart = (req, res) => {
+  console.log('Received request to add to cart:', req.body);
   const { productId, quantity } = req.body;
   const product = Product.getById(productId);
+  console.log('Found product:', product)
   if (product) {
     const existingItem = cart.find(item => item.product.id === productId);
     if (existingItem) {
@@ -16,7 +18,7 @@ exports.addToCart = (req, res) => {
     } else {
       cart.push({ product, quantity: parseInt(quantity) });
     }
-    res.json({ success: true, cartSize: cart.length });
+    res.json({ success: true, message: 'Product added to cart', cartSize: cart.length });
   } else {
     res.status(404).json({ success: false, message: 'Product not found' });
   }
