@@ -1,0 +1,13 @@
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/header') %>
+    <main>
+        <h2>Perfil de Usuario</h2>
+        <img src="/images/users/<%= user.avatar %>" alt="Avatar de <%= user.name %>">
+        <p>Nombre: <%= user.name %></p>
+        <p>Email: <%= user.email %></p>
+        <a href="/users/logout">Cerrar sesión</a>
+    </main>
+    <%- include('../partials/footer') %>
+</body>
+</html>
