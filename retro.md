@@ -19,3 +19,7 @@ pude realizar las data en json y pero las rutas se me complicaron... tanto que a
 ### La mayor problemática
 
 La mayor problematica del proyecto que realizamos seria el tiempo ya que teniamos que realizar esto en 2 semanas de la cual siento que sin ningun tipo de ayuda no se termina este proyecto.... espero que sean consiente de ello y puedan tener un poco de paciencia ya que esta es una nueva carrera para mi y estoy aprendiendo a asimilar cada cosa que aprendo de este curso de la cual es muy interesante.
+
+### Problemas con base de datos
+
+Tuve ciertos problemas con la base de datos y sequelize que se pudieron arreglar

@@ -1,0 +1,88 @@
+<%- include('../partials/head', {title: 'Registro'}) %>
+<%- include('../partials/header') %>
+<style>
+    /* Colores y estilo para el formulario, puedes ajustar según tus necesidades */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+    }
+
+    .form-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin: 10px 0 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Registro de usuario</h2>
+    <form action="/register" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="firstName">Nombre:</label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div>
+            <label for="lastName">Apellido:</label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="image">Imagen de perfil:</label>
+            <input type="file" id="image" name="image">
+        </div>
+        <button type="submit">Registrarse</button>
+    </form>
+</div>
+<%- include('../partials/footer') %>
+<script src="/js/registerValidation.js"></script>
+</body>
+  
+
+</html>

@@ -26,3 +26,5 @@ Cadea una de las páginas representa mucho de lo que queremos implementar en est
 La idea de DeliChoice surgió de mi deseo de unir el mundo de la tecnología con lo que más amo: la cocina. Estoy convencido de que las tecnologías actuales pueden transformar la manera en que interactuamos con la comida, desde la creación de menús hasta la forma en que la pedimos y la disfrutamos. DeliChoice es solo el comienzo de este viaje hacia la digitalización de la gastronomía.
 
 Mas allá de mi Proyecto final con **Digital House**, este proyecto lo quiero llevar a otro nivel luego de culminar mis estudios.
+
+Aqui esta el  [Trello] (https://trello.com/b/ZcS76mY0/dpfsaldairdecastro)  donde estara los datos sobre lo que se ha hecho durante la cursada
