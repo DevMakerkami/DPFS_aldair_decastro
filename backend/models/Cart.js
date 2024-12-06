@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+/*module.exports = (sequelize, DataTypes) => {
     const Cart = sequelize.define('Cart', {
       createdAt: {
         type: DataTypes.DATE,
@@ -19,4 +19,27 @@ module.exports = (sequelize, DataTypes) => {
     };
   
     return Cart;
-  };
+  };*/
+
+  // models/Cart.js
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+const User = require('./User');
+
+class Cart extends Model {}
+
+Cart.init({
+  created_at: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW
+  }
+}, {
+  sequelize,
+  modelName: 'Cart',
+  timestamps: false
+});
+
+Cart.belongsTo(User, { foreignKey: 'user_id' });
+User.hasOne(Cart, { foreignKey: 'user_id' });
+
+module.exports = Cart;

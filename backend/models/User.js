@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+/*module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
       firstName: {
         type: DataTypes.STRING(50),
@@ -35,4 +35,45 @@ module.exports = (sequelize, DataTypes) => {
     };
   
     return User;
-  };
+  };*/
+
+  // models/User.js
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+class User extends Model {}
+
+User.init({
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true
+    }
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  category: {
+    type: DataTypes.ENUM('Cliente', 'Administrador'),
+    allowNull: false
+  },
+  image: {
+    type: DataTypes.STRING
+  }
+}, {
+  sequelize,
+  modelName: 'User'
+});
+
+module.exports = User;

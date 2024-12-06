@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+/*module.exports = (sequelize, DataTypes) => {
   const Product = sequelize.define('Product', {
     name: {
       type: DataTypes.STRING(100),
@@ -29,4 +29,36 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   return Product;
-};
+};*/
+
+// models/Product.js
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+const Category = require('./Category');
+
+class Product extends Model {}
+
+Product.init({
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  description: {
+    type: DataTypes.TEXT
+  },
+  price: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false
+  },
+  image: {
+    type: DataTypes.STRING
+  }
+}, {
+  sequelize,
+  modelName: 'Product'
+});
+
+Product.belongsTo(Category, { foreignKey: 'category_id' });
+Category.hasMany(Product, { foreignKey: 'category_id' });
+
+module.exports = Product;

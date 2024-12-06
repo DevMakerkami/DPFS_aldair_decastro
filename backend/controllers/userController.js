@@ -1,6 +1,6 @@
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
-
+const { registerValidations, loginValidations } = require('../middlewares/validations');
 const userController = {
   // Mostrar formulario de registro
   registerForm: (req, res) => {
